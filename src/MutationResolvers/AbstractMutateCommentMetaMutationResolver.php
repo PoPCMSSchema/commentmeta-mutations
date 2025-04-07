@@ -133,7 +133,7 @@ abstract class AbstractMutateCommentMetaMutationResolver extends AbstractMutateE
          * @var object
          */
         $comment = $this->getCommentTypeAPI()->getComment($commentID);
-        $customPostID = $this->getCommentTypeAPI()->getCommentCustomPostID($comment);
+        $customPostID = $this->getCommentTypeAPI()->getCommentPostID($comment);
         $userID = App::getState('current-user-id');
         if ($this->getCustomPostTypeMutationAPI()->canUserEditCustomPost($userID, $customPostID)) {
             return;
