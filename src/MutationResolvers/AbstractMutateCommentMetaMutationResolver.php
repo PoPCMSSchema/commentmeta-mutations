@@ -133,7 +133,7 @@ abstract class AbstractMutateCommentMetaMutationResolver extends AbstractMutateE
          * @var object
          */
         $comment = $this->getCommentTypeAPI()->getComment($commentID);
-        $customPostID = $this->getCommentTypeAPI()->getCommentCustomPostID($comment);
+        $customPostID = $this->getCommentTypeAPI()->getCommentPostID($comment);
         $userID = App::getState('current-user-id');
         if ($this->getCustomPostTypeMutationAPI()->canUserEditCustomPost($userID, $customPostID)) {
             return;
@@ -354,9 +354,9 @@ abstract class AbstractMutateCommentMetaMutationResolver extends AbstractMutateE
     /**
      * @throws CommentMetaCRUDMutationException If there was an error (eg: comment does not exist)
      */
-    protected function executeDeleteEntityMeta(string|int $commentID, string $key): void
+    protected function executeDeleteEntityMeta(string|int $commentID, string $key, mixed $value = null): void
     {
-        $this->getCommentMetaTypeMutationAPI()->deleteCommentMeta($commentID, $key);
+        $this->getCommentMetaTypeMutationAPI()->deleteCommentMeta($commentID, $key, $value);
     }
 
     /**
